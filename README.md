@@ -19,6 +19,9 @@ Now you are ready to start using the NHL PowerCommands Client!
 For every commands you could always use the ```--help``` option to display help about the command.
 There are some commands that belongs to the Power Commands framework, they are not described here, read more about [Power Commands on github](https://github.com/PowerCommands/PowerCommands2022) if you are interested.
 
+[Follow progress on twitter](https://twitter.com/PowerCommands) <img src="https://github.com/PowerCommands/PowerCommands2022/blob/main/Docs/images/Twitter.png?raw=true" alt="drawing" width="20"/>
+
+
 # Commands
 
 ## stats
@@ -180,3 +183,5 @@ Last updated:2023-04-14 11:35:12
 
 # This applications is made with the use of Power Commands!
 Read more about [Power Commands on github](https://github.com/PowerCommands/PowerCommands2022) if you are interested.
+
+[Follow progress on twitter](https://twitter.com/PowerCommands) <img src="https://github.com/PowerCommands/PowerCommands2022/blob/main/Docs/images/Twitter.png?raw=true" alt="drawing" width="20"/>
