@@ -15,6 +15,9 @@ The steps to copy the data files to your **%USERNAME%\AppData\Roaming\PowerComma
 
 Now you are ready to start using the NHL PowerCommands Client!
 
+## Run solution from Visual Studio (or a IDE tool of your own choice)
+This project is open source and completely free for you to use as you wish, just clone this repo and run the code in the **src** directory, be sure to mark the **PainKiller.PowerCommands.PowerCommandsConsole** as startup project before you hit **F5**.
+
 # Help
 For every commands you could always use the ```--help``` option to display help about the command.
 There are some commands that belongs to the Power Commands framework, they are not described here, read more about [Power Commands on github](https://github.com/PowerCommands/PowerCommands2022) if you are interested.
