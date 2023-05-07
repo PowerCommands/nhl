@@ -74,32 +74,6 @@ Place FullName            TeamAbbrevs Nationality GamesPlayed Points Goals Assis
 ### Show stats for current season top 25 points per game (default)
 ```stats --goals-per-game```
 
-## download
-Download data from nhl.com, skaters stats is default and does not explicit have to been set by option.
-
-**Options** (option always has a trailing ```--``` before option name)
-
-*goalies standings drafts find-missing-players*
-
-**Examples**
-### Download skater statistic for current season
-```download```
-
-### Download skater statistic for season 2000
-```download 2000```
-
-### Download goalies statistic for every skater seasons previously downloaded.
-```download --goalies```
-
-### Look for players that are missing and download them.
-```download --find-missing-players```
-
-### Download drafts (and prospects) from 2010 until an already existing year.
-```download 2010 --drafts```
-
-### Download NHL team standings from the min skaters year downloaded to current season
-```download --standings```
-
 ## draft
 
 Fetch draft data from NHL api to build up your base data or just display drafts from the local database file. Draft has a dependency to downloaded players.
@@ -171,6 +145,34 @@ Season  Winner        Nation WinnerPoint PointsPerGame Over99 Games Status
 ```seasons --goals```
 ### Show points winners for seasons 2010 to 2015
 ```seasons 2010 --stop 2015```
+
+# Maintain the database with updates
+
+## download
+Download data from nhl.com, skaters stats is default and does not explicit have to been set by option.
+
+**Options** (option always has a trailing ```--``` before option name)
+
+*goalies standings drafts find-missing-players*
+
+**Examples**
+### Download skater statistic for current season
+```download```
+
+### Download skater statistic for season 2000
+```download 2000```
+
+### Download goalies statistic for every skater seasons previously downloaded.
+```download --goalies```
+
+### Look for players that are missing and download them.
+```download --find-missing-players```
+
+### Download drafts (and prospects) from 2010 until an already existing year.
+```download 2010 --drafts```
+
+### Download NHL team standings from the min skaters year downloaded to current season
+```download --standings```
 
 ## db
 With the db command you can view metadata about your local NHL json file based database, below is a sample of what is shown.
