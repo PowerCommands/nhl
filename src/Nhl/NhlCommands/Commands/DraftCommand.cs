@@ -3,9 +3,9 @@ using NhlCommands.DomainObjects;
 namespace NhlCommands.Commands;
 
 [PowerCommandDesign(description: "Fetch draft data from NHL api to build up your base data or just display drafts from the local database file.",
-                         options: "year|take|include-all|delete",
+                         options: "take|include-all|delete",
                          suggestions: "SWE|FIN|CAN|USA|CZE|SVK|DEU|AUS|CHE|SVN|NOR|DNK|NLD|BLR|LVA|FRA|AUT|GBR|UKR|HRV|LTU|KAZ|POL|NGA|BHS|ITA|RUS",
-                         example: "//Show draft for season 2010/2011|draft --year 2010|//Include skaters that for some reason missing in the database (probably never made it to the NHL?)|draft --year 2010 --include-all|Delete a draft year (in case you want to download it again)|draft --delete 1980")]
+                         example: "//Show draft for season 2010/2011|draft 2010|//Include skaters that for some reason missing in the database (probably never made it to the NHL?)|draft 2010 --include-all|Delete a draft year (in case you want to download it again)|draft --delete 1980")]
 public class DraftCommand : NhlBaseCommand
 {
     public DraftCommand(string identifier, PowerCommandsConfiguration configuration) : base(identifier, configuration) { }
@@ -13,7 +13,7 @@ public class DraftCommand : NhlBaseCommand
     public override RunResult Run()
     {
         var draftsCount = 0;
-        var year = Input.OptionToInt("year");
+        var year = GetSeasonId();
         var take = Input.OptionToInt("take", 100000);
 
         if (HasOption("delete"))
@@ -38,9 +38,11 @@ public class DraftCommand : NhlBaseCommand
         }
 
         var nations = GetNations();
-        var prospects = new List<Prospect>();
+        var drafts = new List<DraftView>();
         foreach (var draftPick in picks.Take(take))
         {
+            var round = Convert.ToInt16(draftPick.Round);
+            var draftView = new DraftView{Round = round, PickOverall = draftPick.PickOverall, Year = draftPick.Year, FullName = draftPick.Prospect.FullName, Nationality = "?"};
             var prospect = DatabaseManager.ProspectsDb.Prospects.FirstOrDefault(p => p.Id == draftPick.Prospect.Id) ?? new Prospect { BirthCity = "?", BirthCountry = "?", AmateurLeague = new ProspectAmateurLeague { Name = "?" }, AmateurTeam = new ProspectAmateurTeam { Name = "?" } };
             if (draftPick.Prospect.Id == 0)
             {
@@ -52,29 +54,32 @@ public class DraftCommand : NhlBaseCommand
                 var people = DatabaseManager.PlayersDb.People.FirstOrDefault(p => p.FullName == draftPick.Prospect.FullName);
                 if (people != null) prospect = new Prospect { AmateurLeague = people.AmateurLeague, Year = draftPick.Year, AmateurTeam = people.AmateurTeam, BirthCity = people.BirthCity, BirthCountry = people.BirthCountry, BirthDate = people.BirthDate, FullName = people.FullName, Nationality = people.Nationality, NhlPlayerId = people.Id };
             }
-
             if (prospect == null)
             {
-                if(HasOption("include-all")) WriteFailureLine($"{draftPick.Year} {draftPick.Prospect.FullName} {draftPick.Prospect.Id} Round:{draftPick.Round} PickOverall: {draftPick.PickOverall}");
+                if (HasOption("include-all")) drafts.Add(draftView);
                 continue;
             }
+
+            draftView.AmateurTeam = $"{prospect.AmateurLeague?.Name}";
+            draftView.BirthCity = $"{prospect.BirthCity}";
+            draftView.BirthCountry = $"{prospect.BirthCountry}";
+            draftView.Nationality = $"{prospect.Nationality}";
+
             if (nations.Count == 0)
             {
-                prospects.Add(prospect);
                 draftsCount++;
-                WriteLine($"{draftPick.Year} {draftPick.Prospect.FullName} {prospect.BirthCity} {prospect.BirthCountry} {prospect.AmateurTeam?.Name}  Round:{draftPick.Round} PickOverall: {draftPick.PickOverall}");
+                drafts.Add(draftView);
                 continue;
             }
             if (nations.Count > 0 && nations.Any(n => string.Equals(prospect.Nationality, n, StringComparison.CurrentCultureIgnoreCase)))
             {
-                prospects.Add(prospect);
                 draftsCount++;
-                WriteLine($"{draftPick.Year} {draftPick.Prospect.FullName} {prospect.BirthCity} {prospect.BirthCountry} {prospect.AmateurTeam?.Name}  Round:{draftPick.Round} PickOverall: {draftPick.PickOverall}");
+                drafts.Add(draftView);
             }
         }
+        ConsoleTableService.RenderTable(drafts.OrderBy(d => d.Round).ThenBy(d => d.PickOverall), this);
         WriteLine($"Total drafts count:{draftsCount}\n");
-
-        WriteNationsSummary(prospects);
+        WriteNationsSummary(drafts);
         return Ok();
     }
 

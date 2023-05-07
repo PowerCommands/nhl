@@ -74,7 +74,7 @@ Place FullName            TeamAbbrevs Nationality GamesPlayed Points Goals Assis
 
 Fetch draft data from NHL api to build up your base data or just display drafts from the local database file. Draft has a dependency to downloaded players.
 
-nhl>**draft** --year 2017 --take 5
+nhl>**draft** 2017 --take 5
 ```
 2017 Nico Hischier Naters CHE Halifax  Round:1 PickOverall: 1
 2017 Nolan Patrick Winnipeg CAN Brandon  Round:1 PickOverall: 2
@@ -85,7 +85,7 @@ nhl>**draft** --year 2017 --take 5
 
 **Options** (option always has a trailing ```--``` before option name)
 
-*year take include-all delete*
+*take include-all delete*
 
 **Country filters (one or as many as you want)**
 
@@ -93,9 +93,9 @@ nhl>**draft** --year 2017 --take 5
 
 **Examples**
 ### Show draft for season 2010/2011
-```draft --year 2010```
+```draft 2010```
 ### Include skaters that for some reason missing in the database (probably never made it to the NHL?)
-```draft --year 2010 --include-all```
+```draft 2010 --include-all```
 ### Delete a draft year (in case you want to download it again)
 ```draft --delete 1980```
 
