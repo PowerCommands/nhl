@@ -2,16 +2,12 @@
 NHL Power Commands, dig in to NHL stats, fetch current data from NHL.com.
 
 ## Prerequisites
-You need support for at least .NET 6, you can download current SDK from here: [Microsoft .NET Download](https://dotnet.microsoft.com/en-us/download)
+You need support for at least .NET 6 or higher versions, you can download current SDK from here: [Microsoft .NET Download](https://dotnet.microsoft.com/en-us/download)
 
 ## Installation of the Power Commands NHL Client
 There are one prepared release for **Windows x64** machines in the release [directory](release).
-- Unzip the **PainKiller.NhlCommands.zip** file to your local machine
-- Open your user user profile **%USERNAME%\AppData\Roaming** directory, create a directory named **PowerCommands** if it does not exist
-- Create a directory named **nhl** in the **PowerCommands** directory created in previous step. 
-- Copy or Move the files from the directory **AppData\nhl** to the created directory
-
-The steps to copy the data files to your **%USERNAME%\AppData\Roaming\PowerCommands\nhl** directory is not necessary but it will give you a bunch of already downloaded data to start with.
+- Unzip the **PainKiller.NhlCommands.zip** file to your local machine, suggestion is to create a new directory named PowerCommands.Nhl in your main program directory
+- Start the program **nhl.exe** and then run the command ```install``` this will unzip the base data, that will give you a good start, over time you will need to fetch updates, which is described under the section **Maintain the database with updates** the start data is up do date with season 2022/2023. 
 
 Now you are ready to start using the NHL PowerCommands Client!
 

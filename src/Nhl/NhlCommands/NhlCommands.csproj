@@ -18,6 +18,9 @@
 		<None Update="ArtifactPathsConfiguration.yaml">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
+		<None Update="BaseDataFiles\data.zip">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 		<None Update="PowerCommandsConfiguration.yaml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
