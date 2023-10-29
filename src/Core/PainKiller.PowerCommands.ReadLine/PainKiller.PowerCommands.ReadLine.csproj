@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net7.0;net6.0</TargetFrameworks>
+	<LangVersion>10.0</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Version>1.0.1.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Contracts\" />
+    <Folder Include="DomainObjects\" />
+    <Folder Include="Handlers\" />
+    <Folder Include="Managers\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Events\" />
+  </ItemGroup>
+
+</Project>
