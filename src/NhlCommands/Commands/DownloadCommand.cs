@@ -17,7 +17,6 @@ public class DownloadCommand : NhlBaseCommand
         else if (HasOption("standings")) await DownloadStandings();
         else if (HasOption("find-missing-players")) await DownloadMissingPlayers();
         else await DownloadSkaterStats();
-        Write(ConfigurationGlobals.Prompt);
         return Ok();
     }
     public async Task DownloadDrafts()
