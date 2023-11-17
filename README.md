@@ -1,5 +1,7 @@
 # NHL Power Commands
-NHL Power Commands, dig in to NHL stats, fetch current data from NHL.com.
+NHL Power Commands, dig in to NHL stats, fetch current data from NHL.com and from https://statsapi.web.nhl.com/api/ read more about that here: https://gitlab.com/dword4/nhlapi
+ 
+This project is therefore dependent on that this services are running and do not have breaking changes.
 
 ## Prerequisites
 You need support for at least .NET 6 or higher versions, you can download current SDK from here: [Microsoft .NET Download](https://dotnet.microsoft.com/en-us/download)

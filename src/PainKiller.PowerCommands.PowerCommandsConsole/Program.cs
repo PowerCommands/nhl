@@ -1,17 +1,12 @@
 ﻿using PainKiller.PowerCommands.Core.Services;
+using System.Reflection;
+using NhlCommands.Managers;
+using PainKiller.PowerCommands.Configuration.DomainObjects;
 
-ConsoleService.Service.WriteHeaderLine(nameof(Program), "NHL STATS Commands 1.0");
-ConsoleService.Service.WriteLine(nameof(Program), "");
-ConsoleService.Service.WriteLine(nameof(Program), "General instructions");
-ConsoleService.Service.WriteLine(nameof(Program), "Use download command to update the database.");
-ConsoleService.Service.WriteLine(nameof(Program), "Use db command to view details about downloaded data.");
-ConsoleService.Service.WriteLine(nameof(Program), "Use stats, draft, seasons, goals, points commands to view statistic.");
-ConsoleService.Service.WriteLine(nameof(Program), "");
-ConsoleService.Service.WriteLine(nameof(Program), "First argument is the season year (the season end year is the season year) if omitted the current season is used.");
-ConsoleService.Service.WriteLine(nameof(Program), "You could add nationalities like SWE FIN to do comparision based on them.");
-ConsoleService.Service.WriteLine(nameof(Program), "Example, show finnish and swedish hockey skaters stats in the top 100 by points for season 2020.");
-ConsoleService.Service.WriteCodeExample(nameof(Program), "stats","2020 SWE FIN --top 100");
-ConsoleService.Service.WriteLine(nameof(Program), "");
-ConsoleService.Service.WriteLine(nameof(Program), "You could use tab to find suggestion for valid nationalities.");
-ConsoleService.Service.WriteLine(nameof(Program), "");
+ConsoleService.Service.WriteLine(nameof(Program)," ____   __ __  _           _____ ______   ____  ______  _____\r\n|    \\ |  |  || |         / ___/|      | /    ||      |/ ___/\r\n|  _  ||  |  || |        (   \\_ |      ||  o  ||      (   \\_ \r\n|  |  ||  _  || |___      \\__  ||_|  |_||     ||_|  |_|\\__  |\r\n|  |  ||  |  ||     |     /  \\ |  |  |  |  _  |  |  |  /  \\ |\r\n|  |  ||  |  ||     |     \\    |  |  |  |  |  |  |  |  \\    |\r\n|__|__||__|__||_____|      \\___|  |__|  |__|__|  |__|   \\___|\r\n                                                             ", ConsoleColor.Cyan);
+ConsoleService.Service.WriteHeaderLine(nameof(Program),$"\nVersion {ReflectionService.Service.GetVersion(Assembly.GetExecutingAssembly())}");
+
+var databaseManager = new DbManager(Path.Combine(ConfigurationGlobals.ApplicationDataFolder, "nhl"));
+ConsoleService.Service.WriteCodeExample(nameof(Program),"Last updated", $"{databaseManager.SeasonsDb.SkaterStats.Max(s => s.Updated)}");
+
 PainKiller.PowerCommands.Bootstrap.Startup.ConfigureServices().Run(args);

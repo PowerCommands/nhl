@@ -2,9 +2,8 @@ using NhlCommands.Managers;
 
 namespace NhlCommands.Commands;
 
-[PowerCommandTest(         tests: " ")]
-[PowerCommandDesign( description: "Description of your command...",
-                         example: "demo")]
+[PowerCommandDesign( description: "To be run as a scheduled task",
+                         example: "startup")]
 public class StartupCommand : NhlBaseCommand
 {
     public StartupCommand(string identifier, PowerCommandsConfiguration configuration) : base(identifier, configuration) { }
